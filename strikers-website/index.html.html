@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIKERS — Premium Apparel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==================== INTRO OVERLAY ==================== -->
+  <div id="intro-overlay">
+    <video id="intro-video" autoplay muted playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-glitch-with-fast-zooming-lines-3284-large.mp4" type="video/mp4" />
+    </video>
+    <div class="intro-content">
+      <div class="intro-text">STRIKERS</div>
+    </div>
+    <div class="intro-skip">click to skip</div>
+  </div>
+
+  <!-- ==================== MAIN SITE ==================== -->
+  <div class="main-site" id="mainSite">
+
+    <!-- ====== NAVIGATION ====== -->
+    <nav>
+      <div class="nav-left">
+        <span class="nav-link" data-page="catalog">Catalog</span>
+        <span class="nav-link" data-page="about">About us</span>
+        <span class="nav-link" data-page="contact">Contact us</span>
+      </div>
+      <div class="nav-brand" id="logoLink">STRIKERS</div>
+      <div class="nav-right">
+        <span class="nav-link" data-page="search">🔍</span>
+        <span class="cart-toggle" id="cartToggle">🛒 <span class="cart-count">0</span></span>
+        <span class="auth-toggle" id="authToggle">👤</span>
+        <span class="hamburger" id="hamburger">☰</span>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <span class="nav-link" data-page="catalog">Catalog</span>
+      <span class="nav-link" data-page="about">About us</span>
+      <span class="nav-link" data-page="contact">Contact us</span>
+      <span class="auth-toggle">👤 Account</span>
+      <span class="cart-toggle" id="cartToggleMobile">🛒 Cart (<span class="cart-count">0</span>)</span>
+    </div>
+
+    <!-- ====== AUTH MODAL ====== -->
+    <div class="auth-modal" id="authModal">
+      <div class="auth-content">
+        <span class="auth-close" id="authClose">✕</span>
+        <h2 id="authTitle">Welcome Back</h2>
+        <p id="authSubtext">Login to your account or create one</p>
+        
+        <form id="authForm">
+          <input type="text" id="authName" placeholder="Full name" style="display:none;" />
+          <input type="email" id="authEmail" placeholder="Email address" required />
+          <input type="password" id="authPassword" placeholder="Password" required />
+          <button type="submit" id="authSubmit">Login</button>
+        </form>
+        
+        <p style="color:#666; font-size:0.8rem; margin-top:1rem;">
+          <span id="authToggleText">Don't have an account?</span>
+          <span id="authSwitch" style="color:#e7e2d9; cursor:pointer; font-weight:600;">Sign Up</span>
+        </p>
+        <p id="authMessage" style="color:#ff6b6b; font-size:0.8rem; margin-top:0.5rem;"></p>
+        
+        <!-- Logged in user info -->
+        <div id="authUserInfo" style="display:none; margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(231,226,217,0.06);">
+          <p style="color:#888; font-size:0.9rem;">👋 Logged in as <strong id="authUserName" style="color:#e7e2d9;"></strong></p>
+          <button id="authLogout" style="background:transparent; border:1px solid rgba(231,226,217,0.1); color:#888; padding:0.4rem 1.5rem; cursor:pointer; margin-top:0.5rem; font-size:0.7rem; border-radius:4px;">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PAGE CONTAINER ====== -->
+    <div id="page-container">
+
+      <!-- ===== HOME PAGE ===== -->
+      <div class="page active" id="page-home">
+        <!-- ====== NEW HERO (SYNAWORLD-inspired) ====== -->
+        <div class="hero-new">
+          <div class="hero-brand">STRIKERS</div>
+          <div class="hero-grid">
+            <div class="hero-left">
+              <div class="hero-tagline">IT'S A</div>
+              <div class="hero-main">SECRET</div>
+              <div class="hero-subline">Limited drops. Exclusive pieces.<br />Delivering globally.</div>
+            </div>
+            <div class="hero-right">
+              <div class="hero-features">
+                <span>✦ Exclusive Releases</span>
+                <span>✦ Built to Last</span>
+                <span>✦ 100% Safe & Secure</span>
+                <span>✦ Worldwide Shipping</span>
+              </div>
+              <button class="hero-shop-btn nav-link" data-page="catalog">SHOP NOW →</button>
+            </div>
+          </div>
+          <div class="hero-bottom">
+            <span>LIMITED DROPS</span>
+            <span>PREMIUM QUALITY</span>
+            <span>SECURE CHECKOUT</span>
+          </div>
+        </div>
+
+        <!-- Featured Products -->
+        <div class="products" id="featuredProducts">
+          <!-- Products will be loaded by JavaScript -->
+        </div>
+      </div>
+
+      <!-- ===== CATALOG PAGE ===== -->
+      <div class="page" id="page-catalog">
+        <h2 class="page-title">Catalog</h2>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="jackets">Jackets</button>
+          <button class="filter-btn" data-filter="footwear">Footwear</button>
+          <button class="filter-btn" data-filter="headwear">Headwear</button>
+          <button class="filter-btn" data-filter="accessories">Accessories</button>
+        </div>
+        
+        <div class="catalog-grid" id="catalogGrid">
+          <!-- Products will be loaded by JavaScript -->
+        </div>
+      </div>
+
+      <!-- ===== ABOUT PAGE ===== -->
+      <div class="page" id="page-about">
+        <h2 class="page-title">About us</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Unyielding Protection, Uncompromising Comfort</h3>
+            <p>
+              Founded in 2016, STRIKERS was born from the belief that extreme weather 
+              shouldn't mean compromising on style. We engineer technical apparel that 
+              performs in the harshest conditions while maintaining a clean, minimal aesthetic.
+            </p>
+            <p>
+              Our materials are sourced from Japan and Italy, combining cutting-edge 
+              fabric technology with timeless design. Every piece is built to last 
+              — because we believe true sustainability means creating clothes you'll 
+              never want to replace.
+            </p>
+            <div class="about-stats">
+              <div><strong>2016</strong><span>Founded</span></div>
+              <div><strong>12</strong><span>Countries</span></div>
+              <div><strong>∞</strong><span>Warranty</span></div>
+            </div>
+          </div>
+          <div class="about-image" style="background: linear-gradient(135deg, #141414, #1a1a1a); border-radius: 8px; min-height: 300px; display: flex; align-items: center; justify-content: center; color: #555; font-size: 0.8rem; letter-spacing: 0.08em;">
+            [ Brand imagery ]
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CONTACT PAGE ===== -->
+      <div class="page" id="page-contact">
+        <h2 class="page-title">Contact us</h2>
+        <div class="contact-content">
+          <form class="contact-form" id="contactForm">
+            <input type="text" placeholder="Name" required />
+            <input type="email" placeholder="Email" required />
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send message</button>
+          </form>
+          <div class="contact-info">
+            <div>
+              <strong>Email</strong>
+              <span>support@strikers.co</span>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <span>+1 (800) 555‑0199</span>
+            </div>
+            <div>
+              <strong>Studio</strong>
+              <span>Tokyo, Japan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+      <div class="footer-col">
+        <span class="brand">STRIKERS</span>
+        <span style="font-size:0.75rem; color:#666; max-width:200px;">Unyielding protection, uncompromising comfort.</span>
+      </div>
+      <div class="footer-col">
+        <span class="label">Collections</span>
+        <span class="nav-link" data-page="catalog">Jackets</span>
+        <span class="nav-link" data-page="catalog">Footwear</span>
+        <span class="nav-link" data-page="catalog">Headwear</span>
+        <span class="nav-link" data-page="catalog">Accessories</span>
+      </div>
+      <div class="footer-col">
+        <span class="label">Info</span>
+        <span class="nav-link" data-page="about">About us</span>
+        <span>Returns</span>
+        <span>Terms of service</span>
+        <span>Privacy policy</span>
+      </div>
+      <div class="footer-col">
+        <span class="label">Contact</span>
+        <span class="nav-link" data-page="contact">support@strikers.co</span>
+        <span>+1 (800) 555‑0199</span>
+      </div>
+      <div class="footer-bottom">
+        © 2026 STRIKERS — All rights reserved.
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ====== CART SIDEBAR ====== -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Bag</h3>
+      <span class="cart-close" id="cartClose">✕</span>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p style="color:#555; text-align:center; padding:2rem 0;">Your bag is empty</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: <span id="cartTotal">$0.00</span></div>
+      <button class="checkout-btn" id="checkoutBtn">Checkout via WhatsApp</button>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <script>
+    // ============================================================
+    // PRODUCT DATA
+    // ============================================================
+    const products = [
+      { id: 1, name: 'Japanese Windbreaker', price: 99.99, category: 'jackets', image: '🧥' },
+      { id: 2, name: 'Oversized Technical Parka', price: 149.00, category: 'jackets', image: '🧥' },
+      { id: 3, name: 'Silk Turtleneck Top', price: 65.00, category: 'accessories', image: '👕' },
+      { id: 4, name: 'Black Wide Leg Pants', price: 79.00, category: 'accessories', image: '👖' },
+      { id: 5, name: 'Cyberpunk Jacket', price: 189.00, category: 'jackets', image: '🧥' },
+      { id: 6, name: 'Technical Nylon Tank Top', price: 45.00, category: 'accessories', image: '👕' },
+      { id: 7, name: 'Tactical Boots', price: 159.00, category: 'footwear', image: '👢' },
+      { id: 8, name: 'Urban Sneakers', price: 89.00, category: 'footwear', image: '👟' },
+      { id: 9, name: 'Techwear Cap', price: 39.00, category: 'headwear', image: '🧢' },
+      { id: 10, name: 'Carbon Fiber Beanie', price: 49.00, category: 'headwear', image: '🧢' },
+      { id: 11, name: 'Utility Belt', price: 69.00, category: 'accessories', image: '🔗' },
+      { id: 12, name: 'Tactical Backpack', price: 129.00, category: 'accessories', image: '🎒' }
+    ];
+
+    // ============================================================
+    // 1. INTRO SEQUENCE (FIXED)
+    // ============================================================
+    (function() {
+      const overlay = document.getElementById('intro-overlay');
+      const mainSite = document.getElementById('mainSite');
+      const video = document.getElementById('intro-video');
+
+      function skipIntro() {
+        if (!overlay.classList.contains('hidden')) {
+          overlay.classList.add('hidden');
+          mainSite.classList.add('visible');
+          if (video) {
+            video.pause();
+            video.currentTime = 0;
+          }
+        }
+      }
+
+      overlay.addEventListener('click', skipIntro);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          skipIntro();
+        }
+      });
+
+      setTimeout(skipIntro, 3300);
+
+      if (video) {
+        video.addEventListener('ended', skipIntro);
+        video.addEventListener('error', function() {
+          setTimeout(skipIntro, 1000);
+        });
+        setTimeout(function() {
+          if (!overlay.classList.contains('hidden')) {
+            skipIntro();
+          }
+        }, 5000);
+      }
+
+      setTimeout(function() {
+        skipIntro();
+      }, 6000);
+    })();
+
+    // ============================================================
+    // 2. RENDER PRODUCTS
+    // ============================================================
+    function renderProducts(productsArray, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = productsArray.map(p => `
+        <div class="product-card" data-id="${p.id}" data-category="${p.category}">
+          <div class="product-image" style="background: linear-gradient(135deg, #141414, #1a1a1a); font-size: 3rem; display: flex; align-items: center; justify-content: center;">
+            ${p.image}
+          </div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-price">$${p.price.toFixed(2)}</div>
+          <button class="add-to-cart">Add to bag</button>
+        </div>
+      `).join('');
+    }
+
+    renderProducts(products, 'featuredProducts');
+    renderProducts(products, 'catalogGrid');
+
+    // ============================================================
+    // 3. FILTERING
+    // ============================================================
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const catalogGrid = document.getElementById('catalogGrid');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filter = this.dataset.filter;
+        const filtered = filter === 'all' 
+          ? products 
+          : products.filter(p => p.category === filter);
+        
+        renderProducts(filtered, 'catalogGrid');
+      });
+    });
+
+    // ============================================================
+    // 4. USER AUTHENTICATION
+    // ============================================================
+    let currentUser = null;
+    let isLoginMode = true;
+
+    const authModal = document.getElementById('authModal');
+    const authToggle = document.getElementById('authToggle');
+    const authClose = document.getElementById('authClose');
+    const authForm = document.getElementById('authForm');
+    const authSubmit = document.getElementById('authSubmit');
+    const authTitle = document.getElementById('authTitle');
+    const authSubtext = document.getElementById('authSubtext');
+    const authName = document.getElementById('authName');
+    const authEmail = document.getElementById('authEmail');
+    const authPassword = document.getElementById('authPassword');
+    const authSwitch = document.getElementById('authSwitch');
+    const authToggleText = document.getElementById('authToggleText');
+    const authMessage = document.getElementById('authMessage');
+    const authUserInfo = document.getElementById('authUserInfo');
+    const authUserName = document.getElementById('authUserName');
+    const authLogout = document.getElementById('authLogout');
+
+    authToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      authModal.classList.add('open');
+      checkAuthState();
+    });
+
+    function closeAuth() {
+      authModal.classList.remove('open');
+      authMessage.textContent = '';
+    }
+    authClose.addEventListener('click', closeAuth);
+    authModal.addEventListener('click', function(e) {
+      if (e.target === this) closeAuth();
+    });
+
+    authSwitch.addEventListener('click', function() {
+      isLoginMode = !isLoginMode;
+      if (isLoginMode) {
+        authTitle.textContent = 'Welcome Back';
+        authSubtext.textContent = 'Login to your account';
+        authSubmit.textContent = 'Login';
+        authSwitch.textContent = 'Sign Up';
+        authToggleText.textContent = "Don't have an account?";
+        authName.style.display = 'none';
+      } else {
+        authTitle.textContent = 'Create Account';
+        authSubtext.textContent = 'Join STRIKERS';
+        authSubmit.textContent = 'Sign Up';
+        authSwitch.textContent = 'Login';
+        authToggleText.textContent = 'Already have an account?';
+        authName.style.display = 'block';
+      }
+      authMessage.textContent = '';
+    });
+
+    authForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = authEmail.value.trim();
+      const password = authPassword.value.trim();
+      const name = authName.value.trim();
+
+      if (!email || !password) {
+        authMessage.textContent = 'Please fill in all fields.';
+        return;
+      }
+
+      if (isLoginMode) {
+        const users = JSON.parse(localStorage.getItem('strikers_users') || '[]');
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+          currentUser = user;
+          localStorage.setItem('strikers_current_user', JSON.stringify(user));
+          authMessage.textContent = '✅ Login successful!';
+          authMessage.style.color = '#51cf66';
+          setTimeout(() => { closeAuth(); checkAuthState(); }, 800);
+        } else {
+          authMessage.textContent = '❌ Invalid email or password.';
+          authMessage.style.color = '#ff6b6b';
+        }
+      } else {
+        if (!name) {
+          authMessage.textContent = 'Please enter your full name.';
+          return;
+        }
+        const users = JSON.parse(localStorage.getItem('strikers_users') || '[]');
+        if (users.find(u => u.email === email)) {
+          authMessage.textContent = '❌ Email already registered. Please login.';
+          authMessage.style.color = '#ff6b6b';
+          return;
+        }
+        const newUser = { id: Date.now(), name, email, password, created: new Date().toISOString() };
+        users.push(newUser);
+        localStorage.setItem('strikers_users', JSON.stringify(users));
+        currentUser = newUser;
+        localStorage.setItem('strikers_current_user', JSON.stringify(newUser));
+        authMessage.textContent = '✅ Account created! Welcome!';
+        authMessage.style.color = '#51cf66';
+        setTimeout(() => { closeAuth(); checkAuthState(); }, 800);
+      }
+    });
+
+    function checkAuthState() {
+      const stored = localStorage.getItem('strikers_current_user');
+      if (stored) {
+        currentUser = JSON.parse(stored);
+        authUserInfo.style.display = 'block';
+        authUserName.textContent = currentUser.name || currentUser.email;
+        authForm.style.display = 'none';
+        authTitle.textContent = '👋 Hello!';
+        authSubtext.textContent = 'You are logged in';
+        authToggle.textContent = '👤';
+      } else {
+        currentUser = null;
+        authUserInfo.style.display = 'none';
+        authForm.style.display = 'block';
+        authTitle.textContent = isLoginMode ? 'Welcome Back' : 'Create Account';
+        authSubtext.textContent = isLoginMode ? 'Login to your account' : 'Join STRIKERS';
+        authToggle.textContent = '👤';
+      }
+    }
+
+    authLogout.addEventListener('click', function() {
+      localStorage.removeItem('strikers_current_user');
+      currentUser = null;
+      checkAuthState();
+      authMessage.textContent = 'Logged out.';
+      authMessage.style.color = '#ff6b6b';
+      setTimeout(() => { authMessage.textContent = ''; }, 2000);
+    });
+
+    checkAuthState();
+
+    // ============================================================
+    // 5. CART SYSTEM
+    // ============================================================
+    let cart = [];
+    const cartCounts = document.querySelectorAll('.cart-count');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const cartToggle = document.getElementById('cartToggle');
+    const cartToggleMobile = document.getElementById('cartToggleMobile');
+
+    // Open cart function
+    function openCart() {
+      cartSidebar.classList.add('open');
+      cartOverlay.classList.add('open');
+      renderCart();
+    }
+
+    // Close cart function
+    function closeCart() {
+      cartSidebar.classList.remove('open');
+      cartOverlay.classList.remove('open');
+    }
+
+    // Cart toggle click handlers
+    if (cartToggle) {
+      cartToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        openCart();
+      });
+    }
+
+    if (cartToggleMobile) {
+      cartToggleMobile.addEventListener('click', function(e) {
+        e.stopPropagation();
+        openCart();
+      });
+    }
+
+    // Also handle any .cart-toggle elements (for the mobile menu)
+    document.querySelectorAll('.cart-toggle').forEach(el => {
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        openCart();
+      });
+    });
+
+    document.getElementById('cartClose').addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+
+    // Add to cart
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const card = this.closest('.product-card');
+        const id = parseInt(card.dataset.id);
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+
+        updateCartUI();
+        this.textContent = '✓ Added';
+        setTimeout(() => { this.textContent = 'Add to bag'; }, 1200);
+      });
+    });
+
+    function updateCartUI() {
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCounts.forEach(el => el.textContent = totalItems);
+      renderCart();
+    }
+
+    function renderCart() {
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="color:#555; text-align:center; padding:2rem 0;">Your bag is empty</p>';
+        cartTotal.textContent = '$0.00';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        html += `
+          <div class="cart-item">
+            <div>
+              <div style="font-weight:400; font-size:0.9rem; color:#e7e2d9;">${item.name}</div>
+              <div style="color:#888; font-size:0.8rem;">$${item.price.toFixed(2)} × ${item.qty}</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+              <span style="color:#888;">$${subtotal.toFixed(2)}</span>
+              <button class="cart-remove" data-index="${index}" style="background:none; border:none; color:#666; cursor:pointer; font-size:1.2rem;">✕</button>
+            </div>
+          </div>
+        `;
+      });
+
+      cartItems.innerHTML = html;
+      cartTotal.textContent = `$${total.toFixed(2)}`;
+
+      document.querySelectorAll('.cart-remove').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const index = parseInt(this.dataset.index);
+          cart.splice(index, 1);
+          updateCartUI();
+          if (cart.length === 0) closeCart();
+        });
+      });
+    }
+
+    // ============================================================
+    // 6. WHATSAPP CHECKOUT (FIXED)
+    // ============================================================
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    
+    // Make sure the button exists
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Checkout button clicked!'); // Debug log
+        
+        // Check if cart is empty
+        if (cart.length === 0) {
+          alert('Your bag is empty! Add some items first.');
+          return;
+        }
+
+        // Check if user is logged in
+        const storedUser = localStorage.getItem('strikers_current_user');
+        if (!storedUser) {
+          alert('Please login or create an account before checking out.');
+          authModal.classList.add('open');
+          return;
+        }
+
+        try {
+          // Build WhatsApp message
+          let message = '🛍️ *STRIKERS Order*%0A%0A';
+          let total = 0;
+          
+          cart.forEach(item => {
+            const subtotal = item.price * item.qty;
+            total += subtotal;
+            message += `• ${item.name} × ${item.qty} = $${subtotal.toFixed(2)}%0A`;
+          });
+          
+          const userData = JSON.parse(storedUser);
+          message += `%0A📦 *Total: $${total.toFixed(2)}*%0A%0A`;
+          message += `👤 Customer: ${userData.name || 'Guest'}%0A`;
+          message += `📧 Email: ${userData.email || 'N/A'}%0A%0A`;
+          message += `Thank you! 🙌`;
+
+          // YOUR WHATSAPP NUMBER - CHANGE THIS!
+          const phoneNumber = '+94701911877'; // Replace with your number
+          const url = `https://wa.me/${phoneNumber}?text=${message}`;
+          
+          console.log('Opening WhatsApp:', url); // Debug log
+          
+          // Open WhatsApp in new tab/window
+          window.open(url, '_blank');
+          
+          // Clear cart after checkout
+          cart = [];
+          updateCartUI();
+          closeCart();
+          
+        } catch (error) {
+          console.error('Checkout error:', error);
+          alert('Something went wrong. Please try again.');
+        }
+      });
+    } else {
+      console.error('Checkout button not found!');
+    }
+
+    // ============================================================
+    // 7. CONTACT FORM
+    // ============================================================
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you! We\'ll get back to you soon.');
+      this.reset();
+    });
+
+    // ============================================================
+    // 8. NAVIGATION
+    // ============================================================
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = {
+      home: document.getElementById('page-home'),
+      catalog: document.getElementById('page-catalog'),
+      about: document.getElementById('page-about'),
+      contact: document.getElementById('page-contact'),
+    };
+
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const page = this.dataset.page;
+        if (page && pages[page]) {
+          Object.values(pages).forEach(p => p.classList.remove('active'));
+          pages[page].classList.add('active');
+          mobileMenu.classList.remove('open');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ============================================================
+    // 9. CLICKABLE LOGO
+    // ============================================================
+    document.getElementById('logoLink').addEventListener('click', function() {
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      pages.home.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      mobileMenu.classList.remove('open');
+    });
+
+    console.log('🔥 STRIKERS — Fully loaded with Auth + Filtering + WhatsApp Checkout + Clickable Logo!');
+  </script>
+
+</body>
+</html>
